@@ -1,0 +1,51 @@
+---
+swagger: 2.0
+info:
+  title: PetAPI
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      summary: Get a pet
+      responses:
+        200:
+          description: Get Pet
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pet'
+    post:
+      summary: Add Pet
+      parameters:
+      - name: body
+        in: body
+        schema:
+          $ref: '#/definitions/Pet'
+      responses:
+        201:
+          description: Created Pet
+    delete:
+      summary: Delete Pet
+      parameters:
+      - name: name
+        in: query
+        description: Pet Name
+        required: true
+        type: string
+      responses:
+        204:
+          description: Pet Deleted
+definitions:
+  Pet:
+    required:
+    - id
+    - name
+    properties:
+      id:
+        format: int64
+        description: Pet ID
+        type: integer
+      name:
+        description: Pet Name
+        type: string
+securityDefinitions: {}
